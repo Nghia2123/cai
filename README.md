@@ -1,3 +1,6 @@
+# Build local:
+`pip install .`
+
 # Cybersecurity AI (`CAI`)
 
 <div align="center">
@@ -59,8 +62,6 @@ A lightweight, ergonomic framework for building bug bounty-ready Cybersecurity A
 >
 > *By no means the authors of CAI encourage or promote the unauthorized tampering with compute systems. Please don't use the source code in here for cybercrime. <u>Pentest for good instead</u>*. By downloading, using, or modifying this source code, you agree to the terms of the [`LICENSE`](LICENSE) and the limitations outlined in the [`DISCLAIMER`](DISCLAIMER) file.
 
-## Build local:
-`pip install .`
 
 ## :bookmark: Table of Contents
 
