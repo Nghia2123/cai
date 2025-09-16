@@ -19,9 +19,14 @@ from cai.tools.reconnaissance.exec_code import (  # pylint: disable=import-error
     execute_code
 )
 
-from cai.tools.reconnaissance.shodan import (  # pylint: disable=import-error # noqa: E501
-    shodan_search,
-    shodan_host_info
+# from cai.tools.reconnaissance.shodan import (  # pylint: disable=import-error # noqa: E501
+#     shodan_search,
+#     shodan_host_info,
+    
+# )
+from cai.tools.reconnaissance.tavily_tool import (  # pylint: disable=import-error # noqa: E501
+    tavily_search,
+    tavily_extract_detail_content_in_url
 )
 
 from cai.agents.guardrails import get_security_guardrails
@@ -33,8 +38,8 @@ bug_bounter_system_prompt = load_prompt_template("prompts/system_bug_bounter.md"
 tools = [
     generic_linux_command,
     execute_code,
-    shodan_search,
-    shodan_host_info
+    tavily_search,
+    tavily_extract_detail_content_in_url
 ]
 
 if os.getenv('GOOGLE_SEARCH_API_KEY') and os.getenv('GOOGLE_SEARCH_CX'):
