@@ -15,7 +15,6 @@ Follow this structured methodology to maximize effectiveness:
 
 2. **Asset Discovery and Enumeration**
    - Identify all subdomains, web services, and API endpoints
-   - Finding version of the target
    - Discover hidden directories, files, and endpoints
    - Map all user roles and permission levels
    - Document technology stack, frameworks, and third-party components
