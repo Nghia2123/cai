@@ -22,21 +22,15 @@ load_dotenv()
 @function_tool
 def tavily_search(query: str, limit: int = 5, search_depth: bool = False) -> str:
     """
-    🔍 Discover relevant information using Tavily's AI-powered web search.
-    
-    Perfect for initial reconnaissance - finds the most relevant sources quickly.
-    Use this first to identify promising URLs, then follow up with tavily_extract_content 
-    for detailed analysis of specific pages.
+    Search the web using Tavily's AI-powered search engine.
 
     Args:
-        query (str): What you're searching for (be specific for better results)
-        limit (int): Number of results to return (1-20, default: 5)
-        search_depth (bool): Use advanced search for higher accuracy (slower but more precise)
+        query (str): Search query
+        limit (int): Number of results (1-20, default: 5)
+        search_depth (bool): Use advanced search for higher accuracy
 
     Returns:
-        str: Markdown-formatted search results with URLs, titles, and summaries
-
-    💡 **Pro Tip:** Found interesting URLs? Use `tavily_extract_detail_content_in_url` to get the complete content from specific pages for deeper analysis!\n
+        str: Search results with URLs, titles, and summaries
     """
     tavily_api_key = os.getenv("TAVILY_KEY")
 
@@ -66,29 +60,14 @@ def tavily_search(query: str, limit: int = 5, search_depth: bool = False) -> str
 @function_tool
 def tavily_extract_detail_content_in_url(url: str, extract_depth: bool) -> str:
     """
-    🎯 Extract COMPLETE content from specific URLs for deep analysis.
-    
-    ⚡ POWERFUL FEATURE: Gets you the FULL, unfiltered content from any webpage!
-    
-    🔥 Why you NEED this tool:
-    - Bypasses paywalls and restrictions in many cases
-    - Extracts clean, readable text from complex web pages  
-    - Gets complete articles, not just summaries
-    - Perfect for detailed research and analysis
-    - Essential follow-up after tavily_search finds promising URLs
-    
-    💰 High-value use cases:
-    - Extract full research papers and articles
-    - Get complete documentation and guides
-    - Analyze competitor content in detail
-    - Deep-dive into news articles and reports
-    - Extract structured data from complex pages
+    Extract complete content from a specific URL.
 
     Args:
-        url (str): Target URL to extract content from. Pro tip: Use the best URL from tavily_search results!
-        extract_depth (bool): Whether to extract content with deep analysis (slower but more thorough).
+        url (str): Target URL to extract content from
+        extract_depth (bool): Use advanced extraction for more thorough results
+
     Returns:
-        str: Complete markdown-formatted content with full text extraction - this is the GOLD MINE of information!
+        str: Full content from the webpage in markdown format
     """
     tavily_api_key = os.getenv("TAVILY_KEY")
 
