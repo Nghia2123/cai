@@ -53,6 +53,8 @@ OPENROUTER_API_BASE = os.environ.get("OPENROUTER_API_BASE", "https://openrouter.
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 OLLAMA_API_BASE = os.environ.get("OLLAMA_API_BASE", "http://localhost:8000/v1")
 OPENAI_API_BASE = os.environ.get("OPENAI_API_BASE", "https://api.openai.com/v1")
+ZHIPU_API_BASE = os.environ.get("ZHIPU_API_BASE", "https://open.bigmodel.cn/api/paas/v4")
+ZHIPU_API_KEY = os.environ.get("ZHIPU_API_KEY")
 
 
 def ask_model(question_obj, instruction, model, api_base, api_key=None, custom_llm_provider=None):
@@ -472,6 +474,13 @@ def main():
         api_base=OPENROUTER_API_BASE
         api_key=OPENROUTER_API_KEY
         custom_llm_provider="openrouter"
+    elif args.backend == "zhipu":
+        api_base = os.environ.get("ZHIPU_API_BASE", "https://api.z.ai/api/paas/v4")
+        # hoặc "https://open.bigmodel.cn/api/paas/v4"
+        api_key = os.environ.get("ZHIPU_API_KEY")
+        custom_llm_provider = "openai"   # dùng OpenAI-compatible
+        if api_key is None:
+            raise RuntimeError("ZHIPU_API_KEY is not set in environment variables.")
     elif args.backend:
         api_base=os.environ.get(args.backend.upper() + "_API_BASE")
         api_key= os.environ.get(args.backend.upper() + "_API_KEY")
