@@ -66,6 +66,10 @@ Environment Variables
             (default: "true"). When enabled, applies security guardrails
             to prevent potentially dangerous outputs and inputs. Set to
             "false" to disable all guardrail functionality.
+        CAI_REQUEST_DELAY: Delay in seconds before sending each request 
+            to AI model (default: "1.0"). Helps avoid rate limits by 
+            slowing down request frequency. Set to "0" for no delay,
+            "2.0" for 2 seconds delay, etc.
 
     Extensions (only applicable if the right extension is installed):
 
@@ -1135,6 +1139,12 @@ def run_cai_cli(
                             # Just pass the user input as a string
                             instance_input = input_text
                         
+                        # Add a small delay before sending request to slow down the process
+                        import asyncio
+                        import os
+                        delay_time = float(os.getenv("CAI_REQUEST_DELAY", "1.0"))
+                        await asyncio.sleep(delay_time)  # Wait configured seconds before sending request
+                        
                         # Run the agent with its own isolated context
                         result = await Runner.run(instance_agent, instance_input)
                         
@@ -1413,6 +1423,12 @@ def run_cai_cli(
                         # Use the full conversation context including history
                         instance_input = conversation_context
 
+                        # Add a small delay before sending request to slow down the process
+                        import asyncio
+                        import os
+                        delay_time = float(os.getenv("CAI_REQUEST_DELAY", "1.0"))
+                        await asyncio.sleep(delay_time)  # Wait configured seconds before sending request
+
                         # Run the agent with its own isolated context
                         result = await Runner.run(instance_agent, instance_input)
 
@@ -1479,6 +1495,10 @@ def run_cai_cli(
                         stream_iterator = None
                         
                         try:
+                            # Add a small delay before sending request to slow down the process
+                            import time
+                            delay_time = float(os.getenv("CAI_REQUEST_DELAY", "1.0"))
+                            time.sleep(delay_time)  # Wait configured seconds before sending request
                             result = Runner.run_streamed(agent, conversation_input)
                             stream_iterator = result.stream_events()
 
@@ -1624,6 +1644,10 @@ def run_cai_cli(
                 else:
                     # Use non-streamed response
                     try:
+                        # Add a small delay before sending request to slow down the process
+                        import time
+                        delay_time = float(os.getenv("CAI_REQUEST_DELAY", "1.0"))
+                        time.sleep(delay_time)  # Wait configured seconds before sending request
                         response = asyncio.run(Runner.run(agent, conversation_input))
                     except InputGuardrailTripwireTriggered as e:
                         # Display a user-friendly warning for input guardrails
