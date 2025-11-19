@@ -26,7 +26,9 @@ from cai.tools.reconnaissance.exec_code import (  # pylint: disable=import-error
 # )
 from cai.tools.reconnaissance.tavily_tool import (  # pylint: disable=import-error # noqa: E501
     tavily_search,
-    tavily_extract_detail_content_in_url
+    tavily_extract,
+    tavily_crawl,
+    tavily_map
 )
 
 from cai.agents.guardrails import get_security_guardrails
@@ -39,7 +41,9 @@ tools = [
     generic_linux_command,
     execute_code,
     tavily_search,
-    tavily_extract_detail_content_in_url
+    tavily_extract,
+    tavily_crawl,
+    tavily_map
 ]
 
 if os.getenv('GOOGLE_SEARCH_API_KEY') and os.getenv('GOOGLE_SEARCH_CX'):
