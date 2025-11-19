@@ -20,7 +20,9 @@ from cai.tools.reconnaissance.exec_code import (  # pylint: disable=import-error
 
 from cai.tools.reconnaissance.tavily_tool import (  # pylint: disable=import-error # noqa: E501
     tavily_search,
-    tavily_extract_detail_content_in_url,
+    tavily_extract,
+    tavily_crawl,
+    tavily_map
 )
 
 from cai.util import load_prompt_template, create_system_prompt_renderer
@@ -36,7 +38,9 @@ tools = [
     #run_ssh_command_with_credentials,
     execute_code,
     tavily_search,
-    tavily_extract_detail_content_in_url,
+    tavily_extract,
+    tavily_crawl,
+    tavily_map
 ]
 
 # Add make_web_search_with_explanation function if PERPLEXITY_API_KEY environment variable is set
